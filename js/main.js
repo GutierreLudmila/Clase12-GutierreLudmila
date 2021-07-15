@@ -5,6 +5,12 @@ const btnVaciarCarrito = document.querySelector('#vaciar-carrito');
 const buscador = document.querySelector('#formulario');
 let carrito = [];
 
+//Animaciones
+$('.productos-container').hide();
+
+$('nav h3').click ( () => {
+    $('.productos-container').toggle(2000)});
+
 //Eventos
 $('.productos-container').on('click',agregarProducto)
 $('#lista-carrito tbody').on('click',borrarProducto);
@@ -17,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     insertarCarrito();
     
 });
+
 
 function buscarArticulo (e){
     e.preventDefault();
@@ -60,7 +67,7 @@ function borrarProducto (e){
         
         carrito = carrito.filter(producto => producto.id !== productoId);
         
-        guardarCarritoStorage();
+        guardarCarrito();
         insertarCarrito();
         
     }
@@ -141,4 +148,5 @@ function borrarCarrito () {
 function guardarCarrito (){
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
+
 

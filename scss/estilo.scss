@@ -132,6 +132,10 @@ body{
                 cursor: pointer;
             }
             
+            h3:hover{
+                color: rgba(218, 165, 32, 0.63);
+            }
+            
             .contenedor-carrito{
                 ul{
                     list-style-type: none;
@@ -243,17 +247,21 @@ body{
         grid-area: footer;
         background-color: $colorFondo;
         text-align: center;
+        display: flex;
+        flex-direction: column;
 
         h3{
             font-family: $fuenteTitulo;
             color: $colorTexto;
             font-size: 50px;
             font-weight: lighter;
+            margin: 10px;
         }
 
-        p{
-            font-family: $fuenteTexto;
+        li{
+            list-style-type: none;
             color: $colorTexto;
+            font-family: $fuenteTexto;
             font-size: 20px;
         }
     }

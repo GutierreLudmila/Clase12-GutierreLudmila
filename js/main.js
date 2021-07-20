@@ -94,7 +94,7 @@ function obtenerDatos(cardProducto){
         id: cardProducto.querySelector('a').getAttribute('data-id'),         
     }
     
-    const existe = carrito.some(producto => producto.id === productoAgregado.id);
+    const existe = carrito.some(producto => producto.id === productoAgregado.id && producto.nombre === productoAgregado.nombre && producto.precio === productoAgregado.precio);
     
     if (existe) {
         const productos = carrito.map(producto => {
@@ -148,5 +148,35 @@ function borrarCarrito () {
 function guardarCarrito (){
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
+
+
+
+    $.ajax ({
+        url: "json/sucursales.json",
+
+        success: function (result,status,jqXHR){
+            console.log(result), 
+
+            result.forEach (sucursal => {
+                const {zona, direccion, telefono} = sucursal; 
+
+                $("footer").append (`
+                  <ul>
+                  <li>
+                     Sucursal ${zona}: ${direccion} - ${telefono}
+                  </li>
+                  </ul>`
+                )
+            })
+        },
+
+        error: function (jqXHR, status, error){
+            console.log(jqXHR),
+            console.log(status),
+            console.log(error)
+
+
+        },
+    })
 
 

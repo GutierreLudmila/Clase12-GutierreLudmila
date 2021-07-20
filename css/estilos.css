@@ -96,6 +96,8 @@ section {
       font-size: 30px;
       font-weight: lighter;
       cursor: pointer; }
+    section nav h3:hover {
+      color: rgba(218, 165, 32, 0.63); }
     section nav .contenedor-carrito ul {
       list-style-type: none; }
     section nav .contenedor-carrito .submenu {
@@ -169,13 +171,17 @@ section {
 footer {
   grid-area: footer;
   background-color: #034054;
-  text-align: center; }
+  text-align: center;
+  display: flex;
+  flex-direction: column; }
   footer h3 {
     font-family: "Playfair Display", serif;
     color: goldenrod;
     font-size: 50px;
-    font-weight: lighter; }
-  footer p {
-    font-family: "Antic Didone", serif;
+    font-weight: lighter;
+    margin: 10px; }
+  footer li {
+    list-style-type: none;
     color: goldenrod;
+    font-family: "Antic Didone", serif;
     font-size: 20px; }

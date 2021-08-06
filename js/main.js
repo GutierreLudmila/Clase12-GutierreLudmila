@@ -94,7 +94,7 @@ function obtenerDatos(cardProducto){
         id: cardProducto.querySelector('a').getAttribute('data-id'),         
     }
     
-    const existe = carrito.some(producto => producto.id === productoAgregado.id && producto.nombre === productoAgregado.nombre);
+    const existe = carrito.find(producto => producto.id === productoAgregado.id && producto.nombre === productoAgregado.nombre);
     
     if (existe) {
         const productos = carrito.map(producto => {
@@ -118,7 +118,7 @@ function obtenerDatos(cardProducto){
 
 function insertarCarrito (){
     
-    borrarCarrito ();
+    //  borrarCarrito ();
     
     carrito.forEach ( producto => {
         const {imagen, nombre, precio, cantidad, id} = producto
@@ -138,6 +138,8 @@ function insertarCarrito (){
         tablaCarrito.appendChild (fila);
     });
     
+    borrarCarrito ();
+
     guardarCarrito();
 }
 
@@ -153,30 +155,30 @@ function guardarCarrito (){
 
 
 
-$.ajax ({
-    url: "json/sucursales.json",
+// $.ajax ({
+//     url: 'file:///C:/Users/Lenovo/Desktop/Javascript/Proyecto%20Final/proyecto%20final/json/sucs.json',
 
-    success: function (result,status,jqXHR){
-        console.log(result), 
+//     success: function (result,status,jqXHR){
+//         console.log(result), 
 
-        result.forEach (sucursal => {
-            const {zona, direccion, telefono} = sucursal; 
+//         result.forEach (sucursal => {
+//             const {zona, direccion, telefono} = sucursal; 
 
-            $("footer").append (`
-              <ul>
-              <li>
-                 Sucursal ${zona}: ${direccion} - ${telefono}
-              </li>
-              </ul>`
-            )
-        })
-    },
+//             $("footer").append (`
+//               <ul>
+//               <li>
+//                  Sucursal ${zona}: ${direccion} - ${telefono}
+//               </li>
+//               </ul>`
+//             )
+//         })
+//     },
 
-    error: function (jqXHR, status, error){
-        console.log(jqXHR),
-        console.log(status),
-        console.log(error)
+//     error: function (jqXHR, status, error){
+//         console.log(jqXHR),
+//         console.log(status),
+//         console.log(error)
 
 
-    },
-})
+//     },
+// })

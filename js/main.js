@@ -118,7 +118,7 @@ function obtenerDatos(cardProducto){
 
 function insertarCarrito (){
     
-    //  borrarCarrito ();
+    borrarCarrito ();
     
     carrito.forEach ( producto => {
         const {imagen, nombre, precio, cantidad, id} = producto
@@ -138,7 +138,6 @@ function insertarCarrito (){
         tablaCarrito.appendChild (fila);
     });
     
-    borrarCarrito ();
 
     guardarCarrito();
 }
@@ -155,30 +154,29 @@ function guardarCarrito (){
 
 
 
-// $.ajax ({
-//     url: 'file:///C:/Users/Lenovo/Desktop/Javascript/Proyecto%20Final/proyecto%20final/json/sucs.json',
+$.ajax ({
+    url:"/json/sucursales.json",
+    success: function (result,status,jqXHR){
+        console.log(result), 
 
-//     success: function (result,status,jqXHR){
-//         console.log(result), 
+        result.forEach (sucursal => {
+            const {zona, direccion, telefono} = sucursal; 
 
-//         result.forEach (sucursal => {
-//             const {zona, direccion, telefono} = sucursal; 
+            $("footer").append (`
+              <ul>
+              <li>
+                 Sucursal ${zona}: ${direccion} - ${telefono}
+              </li>
+              </ul>`
+            )
+        })
+    },
 
-//             $("footer").append (`
-//               <ul>
-//               <li>
-//                  Sucursal ${zona}: ${direccion} - ${telefono}
-//               </li>
-//               </ul>`
-//             )
-//         })
-//     },
-
-//     error: function (jqXHR, status, error){
-//         console.log(jqXHR),
-//         console.log(status),
-//         console.log(error)
+    error: function (jqXHR, status, error){
+        console.log(jqXHR),
+        console.log(status),
+        console.log(error)
 
 
-//     },
-// })
+    },
+})

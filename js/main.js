@@ -94,7 +94,7 @@ function obtenerDatos(cardProducto){
         id: cardProducto.querySelector('a').getAttribute('data-id'),         
     }
     
-    const existe = carrito.some(producto => producto.id === productoAgregado.id && producto.nombre === productoAgregado.nombre && producto.precio === productoAgregado.precio);
+    const existe = carrito.some(producto => producto.id === productoAgregado.id && producto.nombre === productoAgregado.nombre);
     
     if (existe) {
         const productos = carrito.map(producto => {
@@ -142,7 +142,9 @@ function insertarCarrito (){
 }
 
 function borrarCarrito () {
-    tablaCarrito.innerHTML = '';
+    while (tablaCarrito.firstChild) {
+        tablaCarrito.removeChild(tablaCarrito.firstChild);
+    }
 };
 
 function guardarCarrito (){
@@ -154,7 +156,7 @@ function guardarCarrito (){
     $.ajax ({
         url: "json/sucursales.json",
 
-        success: function (result,status,jqXHR){
+        success: function (result){
             console.log(result), 
 
             result.forEach (sucursal => {

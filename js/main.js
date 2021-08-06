@@ -153,32 +153,30 @@ function guardarCarrito (){
 
 
 
-    $.ajax ({
-        url: "json/sucursales.json",
+$.ajax ({
+    url: "json/sucursales.json",
 
-        success: function (result){
-            console.log(result), 
+    success: function (result,status,jqXHR){
+        console.log(result), 
 
-            result.forEach (sucursal => {
-                const {zona, direccion, telefono} = sucursal; 
+        result.forEach (sucursal => {
+            const {zona, direccion, telefono} = sucursal; 
 
-                $("footer").append (`
-                  <ul>
-                  <li>
-                     Sucursal ${zona}: ${direccion} - ${telefono}
-                  </li>
-                  </ul>`
-                )
-            })
-        },
+            $("footer").append (`
+              <ul>
+              <li>
+                 Sucursal ${zona}: ${direccion} - ${telefono}
+              </li>
+              </ul>`
+            )
+        })
+    },
 
-        error: function (jqXHR, status, error){
-            console.log(jqXHR),
-            console.log(status),
-            console.log(error)
-
-
-        },
-    })
+    error: function (jqXHR, status, error){
+        console.log(jqXHR),
+        console.log(status),
+        console.log(error)
 
 
+    },
+})
